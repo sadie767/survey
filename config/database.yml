@@ -1,0 +1,7 @@
+development:
+  adapter: postgresql
+  database: poll
+
+test:
+  adapter: postgresql
+  database: poll_test
