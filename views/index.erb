@@ -3,5 +3,41 @@
 </div>
 
 <div name="container">
-  <form action="" method="post">
+  <form class="form-group" action="/add_survey" method="post">
+    <div>
+      <label for="author_name">Enter your name:</label>
+      <input name="author_name" type="text">
+    </div>
+    <div>
+      <label for="survey_title">Enter title of your survey:</label>
+      <input name="survey_title" type="text">
+    </div>
+
+    <button type="submit" class="btn-success">Add Survey!</button>
+  </form>
 </div>
+
+<h2>Available Surveys</h2><br>
+
+<% if @surveys.any?() %>
+  <div class="card bg-light">
+    <div class="card-body">
+      <table class="table table-bordered">
+        <thread class="thread text-white bg-dark">
+          <tr>
+            <th>Survey Title</th>
+            <th>Author Name</th>
+          </tr>
+        </thread>
+        <tbody>
+          <% @surveys.each do |survey| %>
+            <tr class="table-light">
+              <td class="align-middle"><a href="/survey/<%= survey.id %>"><%= survey.title %></a></td>
+              <td class="align-middle"><%= survey.author %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+<% end %>

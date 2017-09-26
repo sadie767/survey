@@ -1,0 +1,23 @@
+<div class="jumbotron">
+<h1><%= @survey.title() %></h1>
+</div>
+
+<div name="container">
+  <h3>Write a question to add to this survey!</h3>
+
+  <form class="form-group" action="/add_question/<%= @survey.id %>" method="post">
+    <div>
+      <label for="add_question">Question:</label>
+      <input name="add_question" type="text">
+    </div>
+    <button type="submit" class="btn-success">Add Question!</button>
+  </form>
+
+  <ul>
+    <% @question.each do |compare| %>
+      <% if compare.survey_id === @survey_id %>
+        <li><%= compare.question %></li>
+      <% end %>
+    <% end %>
+  </ul>
+</div>
