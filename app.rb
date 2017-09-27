@@ -18,16 +18,21 @@ post ("/add_survey") do
 end
 
 get ("/survey/:id") do
-  @survey = Survey.find(params.fetch("id").to_i())
-  @surveys = Survey.all()
+  @survey = Survey.all()
+  id = params[:id].to_i
+  surveyid = @survey[id]
+  # binding.pry
   @question = Question.all()
+  @the_page_survey = Survey.find(params.fetch("id").to_i())
   erb(:survey_info)
 end
 
 post ("/add_question/:id") do
+  @question = Question.all()
   @survey_id = Survey.find(params.fetch("id").to_i())
   question = params.fetch("add_question")
-  @question = Question.create({:question => question, :survey_id => @survey_id})
+  @new_question = Question.create({:question => question, :survey_id => @survey_id})
   @question.save()
+  binding.pry
   redirect("/survey/#{@survey_id.id}")
 end
